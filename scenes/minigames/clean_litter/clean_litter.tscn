@@ -1,13 +1,30 @@
-[gd_scene load_steps=2 format=3 uid="uid://cv02m21vq6d6e"]
+[gd_scene load_steps=7 format=3 uid="uid://cv02m21vq6d6e"]
 
 [ext_resource type="Script" path="res://scripts/minigames/clean_litter/clean_litter.gd" id="1_hsget"]
+[ext_resource type="Shader" path="res://assets/shaders/background.gdshader" id="2_20skd"]
+[ext_resource type="Texture2D" uid="uid://bmos3rgsfwyxp" path="res://assets/textures/background.png" id="3_1xdkl"]
+
+[sub_resource type="Gradient" id="Gradient_oi470"]
+offsets = PackedFloat32Array(0, 0.92623, 1)
+colors = PackedColorArray(0.65, 0.465833, 0, 1, 0.727869, 0.521639, 0, 1, 0.75, 0.5375, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_vur7v"]
+gradient = SubResource("Gradient_oi470")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_mphwf"]
+shader = ExtResource("2_20skd")
+shader_parameter/mix_amount = 1.0
+shader_parameter/motion = Vector2(-25, -25)
+shader_parameter/scale = 3.0
+shader_parameter/offset = Vector2(0, 0)
+shader_parameter/gradient = SubResource("GradientTexture1D_vur7v")
 
 [node name="CleanLitter" type="Node2D"]
 script = ExtResource("1_hsget")
 
-[node name="ColorRect" type="ColorRect" parent="."]
-custom_minimum_size = Vector2(640, 360)
-offset_right = 640.0
-offset_bottom = 360.0
-mouse_filter = 1
-color = Color(0.439147, 0.408181, 0.359217, 1)
+[node name="TextureRect" type="TextureRect" parent="."]
+texture_repeat = 2
+material = SubResource("ShaderMaterial_mphwf")
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("3_1xdkl")

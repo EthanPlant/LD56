@@ -1,15 +1,33 @@
-[gd_scene load_steps=3 format=3 uid="uid://c1jwf7vhkv5eb"]
+[gd_scene load_steps=8 format=3 uid="uid://c1jwf7vhkv5eb"]
 
 [ext_resource type="Script" path="res://scripts/minigames/feed_cats/feed_cats.gd" id="1_4dx78"]
 [ext_resource type="PackedScene" uid="uid://cm6iy42iuwkym" path="res://scenes/minigames/feed_cats/food_bowl.tscn" id="1_cyvak"]
+[ext_resource type="Shader" path="res://assets/shaders/background.gdshader" id="2_70tfy"]
+[ext_resource type="Texture2D" uid="uid://bmos3rgsfwyxp" path="res://assets/textures/background.png" id="3_pwm00"]
+
+[sub_resource type="Gradient" id="Gradient_nxf32"]
+colors = PackedColorArray(0, 0.45, 0.1725, 1, 0, 0.55, 0.210833, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_6sjsu"]
+gradient = SubResource("Gradient_nxf32")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_swhh4"]
+shader = ExtResource("2_70tfy")
+shader_parameter/mix_amount = 1.0
+shader_parameter/motion = Vector2(-25, -25)
+shader_parameter/scale = 3.0
+shader_parameter/offset = Vector2(0, 0)
+shader_parameter/gradient = SubResource("GradientTexture1D_6sjsu")
 
 [node name="FeedCats" type="Node2D"]
 script = ExtResource("1_4dx78")
 
-[node name="ColorRect" type="ColorRect" parent="."]
-custom_minimum_size = Vector2(640, 360)
-offset_right = 40.0
-offset_bottom = 40.0
+[node name="Background" type="TextureRect" parent="."]
+texture_repeat = 2
+material = SubResource("ShaderMaterial_swhh4")
+offset_right = 640.0
+offset_bottom = 360.0
+texture = ExtResource("3_pwm00")
 
-[node name="FoodBowl" parent="ColorRect" instance=ExtResource("1_cyvak")]
+[node name="FoodBowl" parent="." instance=ExtResource("1_cyvak")]
 position = Vector2(256, 308)
