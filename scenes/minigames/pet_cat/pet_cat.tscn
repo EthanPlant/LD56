@@ -4,7 +4,7 @@
 
 [node name="PetCat" type="Node2D"]
 script = ExtResource("1_owcr8")
-hand_speed = 300
+threshold = 10.0
 
 [node name="ColorRect" type="ColorRect" parent="."]
 custom_minimum_size = Vector2(640, 360)

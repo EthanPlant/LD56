@@ -14,6 +14,9 @@ func _ready() -> void:
         poop_instance.clicked.connect(_on_poop_clicked)
         add_child(poop_instance)
         _poop_list.append(poop_instance)
-
+        
 func _on_poop_clicked(poop_name):
-    get_node(NodePath(poop_name)).visible = false
+    var poop = get_node(NodePath(poop_name))
+    if poop.visible:
+        get_node(NodePath(poop_name)).visible = false
+        score += 1

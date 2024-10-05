@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-@export var speed = 100
+@export var speed = 300
 
 func _process(delta: float) -> void:
     position.y += speed * delta
@@ -10,4 +10,5 @@ func _process(delta: float) -> void:
 
 func _on_body_entered(body):
     if body.is_in_group("bowl"):
+        get_parent().score += 1
         queue_free()

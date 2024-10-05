@@ -15,5 +15,7 @@ func _on_spawn_timer():
 func _spawn_item() -> void:
     var item_scene = preload("res://scenes/minigames/feed_cats/food.tscn")
     var item_instance = item_scene.instantiate()
-    item_instance.position = Vector2(randf() * get_viewport().size.x - 50, 0)
+    print(get_viewport().size.x)
+    item_instance.position = Vector2(randf_range(0, get_viewport().get_visible_rect().size.x - 40), 0)
+    print(item_instance.position)
     add_child(item_instance)
