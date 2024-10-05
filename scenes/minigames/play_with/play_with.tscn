@@ -1,11 +1,13 @@
-[gd_scene load_steps=7 format=3 uid="uid://8ikwhb3o314h"]
+[gd_scene load_steps=9 format=3 uid="uid://8ikwhb3o314h"]
 
 [ext_resource type="Script" path="res://scripts/minigames/play_with/play_with.gd" id="1_4m4m6"]
 [ext_resource type="Shader" path="res://assets/shaders/background.gdshader" id="2_20mcw"]
 [ext_resource type="Texture2D" uid="uid://bmos3rgsfwyxp" path="res://assets/textures/background.png" id="3_hp3l2"]
+[ext_resource type="Texture2D" uid="uid://ba7nnc0pswtvm" path="res://assets/textures/play_with/wand.png" id="4_4o5ch"]
+[ext_resource type="Texture2D" uid="uid://7cqbcv0kq0v5" path="res://assets/textures/play_with/cat.png" id="4_vg8su"]
 
 [sub_resource type="Gradient" id="Gradient_skkk4"]
-colors = PackedColorArray(0, 0.0433333, 0.65, 1, 0, 0.05, 0.75, 1)
+colors = PackedColorArray(0.563333, 0.65, 0, 1, 0.675, 0.75, 0, 1)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_xl6my"]
 gradient = SubResource("Gradient_skkk4")
@@ -30,17 +32,12 @@ offset_right = 665.0
 offset_bottom = 375.0
 texture = ExtResource("3_hp3l2")
 
-[node name="ColorRect2" type="ColorRect" parent="."]
-offset_left = 316.0
-offset_top = 224.0
-offset_right = 496.0
-offset_bottom = 356.0
-color = Color(0, 0, 0, 1)
+[node name="Cat" type="Sprite2D" parent="."]
+position = Vector2(347.234, 176)
+scale = Vector2(5, 5)
+texture = ExtResource("4_vg8su")
 
-[node name="Wand" type="ColorRect" parent="."]
-offset_left = 72.0
-offset_top = 100.0
-offset_right = 95.0
-offset_bottom = 258.0
-rotation = -1.00785
-color = Color(0.54942, 0.369326, 1, 1)
+[node name="Wand" type="Sprite2D" parent="."]
+position = Vector2(259.16, 76)
+scale = Vector2(5, 5)
+texture = ExtResource("4_4o5ch")
