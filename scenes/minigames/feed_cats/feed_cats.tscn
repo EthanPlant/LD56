@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://c1jwf7vhkv5eb"]
+
+[ext_resource type="Script" path="res://scripts/minigames/feed_cats/feed_cats.gd" id="1_4dx78"]
+[ext_resource type="PackedScene" uid="uid://cm6iy42iuwkym" path="res://scenes/minigames/feed_cats/food_bowl.tscn" id="1_cyvak"]
+
+[node name="FeedCats" type="Node2D"]
+script = ExtResource("1_4dx78")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+custom_minimum_size = Vector2(640, 360)
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="FoodBowl" parent="ColorRect" instance=ExtResource("1_cyvak")]
+position = Vector2(256, 308)

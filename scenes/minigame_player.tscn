@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://c4vlqko4xlhbv"]
+
+[ext_resource type="PackedScene" uid="uid://cv02m21vq6d6e" path="res://scenes/minigames/clean_litter/clean_litter.tscn" id="1_i88is"]
+
+[node name="MinigamePlayer" type="Node2D"]
+
+[node name="CleanLitter" parent="." instance=ExtResource("1_i88is")]

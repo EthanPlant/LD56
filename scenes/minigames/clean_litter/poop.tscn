@@ -1,0 +1,28 @@
+[gd_scene load_steps=3 format=3 uid="uid://bg4w4uau41is6"]
+
+[ext_resource type="Script" path="res://scenes/minigames/clean_litter/poop.gd" id="1_mb3pe"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sbdkm"]
+size = Vector2(6.67823, 2.45201)
+
+[node name="Poop" type="Sprite2D"]
+position = Vector2(36.75, 20.25)
+scale = Vector2(74.5, 41.5)
+script = ExtResource("1_mb3pe")
+
+[node name="Area2D" type="Area2D" parent="."]
+scale = Vector2(1, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0.390585, 0.126506)
+scale = Vector2(0.117185, 0.108099)
+shape = SubResource("RectangleShape2D_sbdkm")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_right = 1.0
+offset_bottom = 1.0
+scale = Vector2(0.777778, 0.272727)
+mouse_filter = 2
+color = Color(0.235294, 0.188235, 0.172549, 1)
+
+[connection signal="input_event" from="Area2D" to="." method="_on_area_2d_input_event"]

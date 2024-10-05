@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://cv02m21vq6d6e"]
+
+[ext_resource type="Script" path="res://scripts/minigames/clean_litter/clean_litter.gd" id="1_hsget"]
+
+[node name="CleanLitter" type="Node2D"]
+script = ExtResource("1_hsget")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+custom_minimum_size = Vector2(640, 360)
+offset_right = 640.0
+offset_bottom = 360.0
+mouse_filter = 1
+color = Color(0.439147, 0.408181, 0.359217, 1)
