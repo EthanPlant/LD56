@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://scenes/minigames/clean_litter/poop.gd" id="1_mb3pe"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sbdkm"]
-size = Vector2(6.67823, 2.45201)
+size = Vector2(13.3218, 5.12693)
 
 [node name="Poop" type="Sprite2D"]
 position = Vector2(36.75, 20.25)
@@ -14,13 +14,13 @@ script = ExtResource("1_mb3pe")
 scale = Vector2(1, 1)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(0.390585, 0.126506)
+position = Vector2(0.779846, 0.271084)
 scale = Vector2(0.117185, 0.108099)
 shape = SubResource("RectangleShape2D_sbdkm")
 
 [node name="ColorRect" type="ColorRect" parent="."]
-offset_right = 1.0
-offset_bottom = 1.0
+offset_right = 2.0
+offset_bottom = 2.0
 scale = Vector2(0.777778, 0.272727)
 mouse_filter = 2
 color = Color(0.235294, 0.188235, 0.172549, 1)
