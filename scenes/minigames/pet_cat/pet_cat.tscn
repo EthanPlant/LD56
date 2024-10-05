@@ -1,8 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://xoo34qrfc2oi"]
+[gd_scene load_steps=9 format=3 uid="uid://xoo34qrfc2oi"]
 
 [ext_resource type="Script" path="res://scripts/minigames/pet_cat/pet_cat.gd" id="1_owcr8"]
 [ext_resource type="Shader" path="res://assets/shaders/background.gdshader" id="2_ohcps"]
 [ext_resource type="Texture2D" uid="uid://bmos3rgsfwyxp" path="res://assets/textures/background.png" id="3_4f30w"]
+[ext_resource type="Texture2D" uid="uid://c3pxpau12pgdt" path="res://assets/textures/pet_cat/cat.png" id="4_oc2lw"]
+[ext_resource type="Texture2D" uid="uid://bxr60dpjyvw6x" path="res://assets/textures/pet_cat/hand.png" id="5_63bti"]
 
 [sub_resource type="Gradient" id="Gradient_vtjb2"]
 colors = PackedColorArray(0, 0.501961, 0.501961, 1, 0, 0.6, 0.6, 1)
@@ -29,16 +31,12 @@ offset_right = 661.0
 offset_bottom = 384.0
 texture = ExtResource("3_4f30w")
 
-[node name="ColorRect2" type="ColorRect" parent="."]
-offset_left = 159.0
-offset_top = 170.0
-offset_right = 472.0
-offset_bottom = 358.0
-color = Color(0, 0, 0, 1)
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(305, 183)
+scale = Vector2(5, 5)
+texture = ExtResource("4_oc2lw")
 
-[node name="Hand" type="ColorRect" parent="."]
-offset_left = 291.0
-offset_top = 126.0
-offset_right = 331.0
-offset_bottom = 166.0
-color = Color(0.945098, 0.760784, 0.490196, 1)
+[node name="Hand" type="Sprite2D" parent="."]
+position = Vector2(451, 41)
+scale = Vector2(5, 5)
+texture = ExtResource("5_63bti")

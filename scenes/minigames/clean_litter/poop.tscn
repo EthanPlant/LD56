@@ -1,27 +1,23 @@
-[gd_scene load_steps=3 format=3 uid="uid://bg4w4uau41is6"]
+[gd_scene load_steps=4 format=3 uid="uid://bg4w4uau41is6"]
 
 [ext_resource type="Script" path="res://scripts/minigames/clean_litter/poop.gd" id="1_mb3pe"]
+[ext_resource type="Texture2D" uid="uid://ds80mkgjfelhp" path="res://assets/textures/clean_litter/poop.png" id="1_ycjwa"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_sbdkm"]
-size = Vector2(13.3218, 5.12693)
+[sub_resource type="CircleShape2D" id="CircleShape2D_xe6pe"]
+radius = 10.0499
 
-[node name="Poop" type="Sprite2D"]
-position = Vector2(36.75, 20.25)
-scale = Vector2(74.5, 41.5)
+[node name="Poop" type="CharacterBody2D"]
 script = ExtResource("1_mb3pe")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(2, 2)
+texture = ExtResource("1_ycjwa")
 
 [node name="Area2D" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(0.779846, 0.271084)
-scale = Vector2(0.117185, 0.108099)
-shape = SubResource("RectangleShape2D_sbdkm")
-
-[node name="ColorRect" type="ColorRect" parent="."]
-offset_right = 2.0
-offset_bottom = 2.0
-scale = Vector2(0.777778, 0.272727)
-mouse_filter = 2
-color = Color(0.235294, 0.188235, 0.172549, 1)
+position = Vector2(0, -2)
+scale = Vector2(2, 2)
+shape = SubResource("CircleShape2D_xe6pe")
 
 [connection signal="input_event" from="Area2D" to="." method="_on_area_2d_input_event"]
