@@ -30,4 +30,5 @@ offset_bottom = 360.0
 texture = ExtResource("3_pwm00")
 
 [node name="FoodBowl" parent="." instance=ExtResource("1_cyvak")]
-position = Vector2(256, 308)
+position = Vector2(318, 275)
+scale = Vector2(2, 2)

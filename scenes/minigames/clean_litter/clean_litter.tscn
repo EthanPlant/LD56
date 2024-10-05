@@ -25,6 +25,6 @@ script = ExtResource("1_hsget")
 [node name="TextureRect" type="TextureRect" parent="."]
 texture_repeat = 2
 material = SubResource("ShaderMaterial_mphwf")
-offset_right = 40.0
-offset_bottom = 40.0
+offset_right = 655.0
+offset_bottom = 381.0
 texture = ExtResource("3_1xdkl")

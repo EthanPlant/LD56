@@ -1,18 +1,20 @@
-[gd_scene load_steps=3 format=3 uid="uid://cm6iy42iuwkym"]
+[gd_scene load_steps=4 format=3 uid="uid://cm6iy42iuwkym"]
 
 [ext_resource type="Script" path="res://scripts/minigames/feed_cats/food_bowl.gd" id="1_i0eun"]
+[ext_resource type="Texture2D" uid="uid://doksvepq434co" path="res://assets/textures/feed_cat/food_bowl.png" id="2_6cc5u"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_yago1"]
-size = Vector2(109, 43)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ls5go"]
+radius = 8.00012
+height = 34.0
 
 [node name="FoodBowl" type="CharacterBody2D"]
 script = ExtResource("1_i0eun")
 
-[node name="ColorRect" type="ColorRect" parent="."]
-offset_right = 109.0
-offset_bottom = 43.0
-color = Color(0, 0, 0, 1)
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_6cc5u")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(54.5, 21.5)
-shape = SubResource("RectangleShape2D_yago1")
+position = Vector2(0, 23)
+rotation = 1.5708
+scale = Vector2(-1.03, 0.829867)
+shape = SubResource("CapsuleShape2D_ls5go")

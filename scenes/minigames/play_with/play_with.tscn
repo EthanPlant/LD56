@@ -26,8 +26,8 @@ threshold = 10.0
 [node name="TextureRect" type="TextureRect" parent="."]
 texture_repeat = 2
 material = SubResource("ShaderMaterial_p8xa3")
-offset_right = 40.0
-offset_bottom = 40.0
+offset_right = 665.0
+offset_bottom = 375.0
 texture = ExtResource("3_hp3l2")
 
 [node name="ColorRect2" type="ColorRect" parent="."]
