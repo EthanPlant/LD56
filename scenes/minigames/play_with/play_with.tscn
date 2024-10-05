@@ -3,6 +3,7 @@
 [ext_resource type="Script" path="res://scripts/minigames/play_with/play_with.gd" id="1_4m4m6"]
 
 [node name="PlayWith" type="Node2D"]
+scale = Vector2(0.987805, 1)
 script = ExtResource("1_4m4m6")
 threshold = 10.0
 
