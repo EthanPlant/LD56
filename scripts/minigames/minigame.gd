@@ -12,7 +12,7 @@ var _timer
 func _ready() -> void:
     score = 0
     _timer = Timer.new()
-    _timer.wait_time = duration
+    _timer.wait_time = duration / Global.speed_mult
     _timer.timeout.connect(_on_timer_timeout)
     _timer.one_shot = true
     add_child(_timer)

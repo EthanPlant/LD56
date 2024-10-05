@@ -1,6 +1,6 @@
 extends Minigame
 
-@export var hand_speed = 2000
+@export var hand_speed = 2000 * Global.speed_mult
 var _hand_dir = 0
 
 func _process(delta: float) -> void:
