@@ -1,10 +1,11 @@
-extends Node2D
+extends Minigame
 
 @export var poop_count = 5
 
 var _poop_list = []
 
 func _ready() -> void:
+    super()
     var poop_scene = preload("res://scenes/minigames/clean_litter/poop.tscn")
     for i in range(poop_count):
         var poop_instance = poop_scene.instantiate()

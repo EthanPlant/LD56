@@ -1,6 +1,7 @@
-extends Node2D
+extends Minigame
 
 func _ready() -> void:
+    super()
     var spawn_timer = Timer.new()
     spawn_timer.wait_time = 0.5
     spawn_timer.one_shot = false
