@@ -1,6 +1,6 @@
 extends Node2D
 
-var _minigames = ["feed_cats", "clean_litter", "pet_cat"]
+var _minigames = ["feed_cats", "clean_litter", "pet_cat", "play_with"]
 var _current_game
 
 func _ready() -> void:
