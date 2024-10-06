@@ -21,6 +21,8 @@ shader_parameter/gradient = SubResource("GradientTexture1D_6sjsu")
 
 [node name="FeedCats" type="Node2D"]
 script = ExtResource("1_4dx78")
+prompt = "Catch food!"
+hint = "Move mouse"
 
 [node name="Background" type="TextureRect" parent="."]
 texture_repeat = 2

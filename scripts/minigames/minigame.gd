@@ -6,6 +6,8 @@ signal game_lost
 
 @export var duration = 5.0
 @export var threshold = 5.0
+@export var prompt: String
+@export var hint: String
 var score
 var timer
 

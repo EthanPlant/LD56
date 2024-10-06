@@ -24,6 +24,8 @@ shader_parameter/gradient = SubResource("GradientTexture1D_xl6my")
 scale = Vector2(0.987805, 1)
 script = ExtResource("1_4m4m6")
 threshold = 10.0
+prompt = "Play!"
+hint = "Spam S"
 
 [node name="TextureRect" type="TextureRect" parent="."]
 texture_repeat = 2

@@ -5,10 +5,11 @@ var _current_game
 var _games_played
 
 func _ready() -> void:
+	$PromptTimer.timeout.connect(_on_prompt_timer)
 	_games_played = -1
 	_switch_game()
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	$Timer.value = _current_game.timer.time_left
 
 func _switch_game():
@@ -27,7 +28,16 @@ func _switch_game():
 	game_scene.game_lost.connect(_on_minigame_loss)
 	_current_game = game_scene
 	$Timer.start_timer(game_scene.duration)
+	$PromptTimer.wait_time = 1.0 / Global.speed_mult
+	$PromptTimer.one_shot = true
+	$PromptTimer.start()
+	$Prompt.text = _current_game.prompt
+	$Prompt.visible = true
+	$Hint.text = _current_game.hint
 	
+func _on_prompt_timer():
+	$Prompt.visible = false
+
 func _on_minigame_win():
 	_current_game.queue_free()
 	_switch_game()
