@@ -33,11 +33,11 @@ offset_bottom = 375.0
 texture = ExtResource("3_hp3l2")
 
 [node name="Cat" type="Sprite2D" parent="."]
-position = Vector2(347.234, 176)
+position = Vector2(347.234, 129)
 scale = Vector2(5, 5)
 texture = ExtResource("4_vg8su")
 
 [node name="Wand" type="Sprite2D" parent="."]
-position = Vector2(259.16, 76)
+position = Vector2(263.21, 17)
 scale = Vector2(5, 5)
 texture = ExtResource("4_4o5ch")

@@ -32,11 +32,11 @@ offset_bottom = 384.0
 texture = ExtResource("3_4f30w")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(305, 183)
+position = Vector2(315, 131)
 scale = Vector2(5, 5)
 texture = ExtResource("4_oc2lw")
 
 [node name="Hand" type="Sprite2D" parent="."]
-position = Vector2(451, 41)
+position = Vector2(448, -21)
 scale = Vector2(5, 5)
 texture = ExtResource("5_63bti")

@@ -21,6 +21,7 @@ shader_parameter/gradient = SubResource("GradientTexture1D_vur7v")
 
 [node name="CleanLitter" type="Node2D"]
 script = ExtResource("1_hsget")
+duration = 7.0
 
 [node name="TextureRect" type="TextureRect" parent="."]
 texture_repeat = 2
