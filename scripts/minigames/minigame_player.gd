@@ -3,9 +3,12 @@ extends Node2D
 var _minigames = ["feed_cats", "clean_litter", "pet_cat", "play_with"]
 var _current_game
 var _games_played
+var _lives
 
 func _ready() -> void:
 	$PromptTimer.timeout.connect(_on_prompt_timer)
+	$Timer.explosion_finished.connect(_on_explosion_finished)
+	_lives = 3
 	_games_played = -1
 	_switch_game()
 
@@ -43,4 +46,12 @@ func _on_minigame_win():
 	_switch_game()
 
 func _on_minigame_loss():
-	print("Lost!")
+	_lives -= 1
+	if _lives <= 0:
+		get_tree().quit()
+	else:
+		get_node("Live%d"%(_lives +1)).visible = false
+
+func _on_explosion_finished():
+	_current_game.queue_free()
+	_switch_game()

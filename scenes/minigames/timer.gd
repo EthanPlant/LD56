@@ -1,17 +1,20 @@
-extends AnimatedSprite2D
+extends Sprite2D
 
-var _max_value: float
 var value: float
 
+signal explosion_finished
+
 func start_timer(duration):
-    _max_value = duration
-    animation = "countdown"
+    $AnimationPlayer.speed_scale = 1 / duration
+    $AnimationPlayer.play("countdown")
     frame = 0
 
 func _process(_delta: float) -> void:
-    if value > 0:
-        var proportion = value / _max_value
-        var index = int((1 - proportion) * 5)
-        frame = index
-    else:
-        play("explosion")
+    if value < 0:
+        $AnimationPlayer.play("explosion")
+
+
+func _on_animation_player_animation_finished(anim_name: StringName) -> void:
+    if anim_name == "explosion":
+        explosion_finished.emit()
+

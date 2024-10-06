@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://c4vlqko4xlhbv"]
+[gd_scene load_steps=7 format=3 uid="uid://c4vlqko4xlhbv"]
 
 [ext_resource type="Script" path="res://scripts/minigames/minigame_player.gd" id="1_mppno"]
 [ext_resource type="PackedScene" uid="uid://c8s880iehetw7" path="res://scenes/minigames/timer.tscn" id="2_7gd0i"]
 [ext_resource type="FontFile" uid="uid://cn7vlycdkx66t" path="res://assets/Kenney Pixel.ttf" id="3_yfo7b"]
+[ext_resource type="Texture2D" uid="uid://ed651jkntp1t" path="res://assets/textures/live.png" id="4_l7vef"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_qg2tb"]
 font = ExtResource("3_yfo7b")
@@ -50,3 +51,21 @@ offset_bottom = 112.0
 text = "Hint
 "
 label_settings = SubResource("LabelSettings_dxsmc")
+
+[node name="Live1" type="Sprite2D" parent="."]
+z_index = 1
+position = Vector2(476, -16)
+scale = Vector2(2, 2)
+texture = ExtResource("4_l7vef")
+
+[node name="Live2" type="Sprite2D" parent="."]
+z_index = 1
+position = Vector2(513, -16)
+scale = Vector2(2, 2)
+texture = ExtResource("4_l7vef")
+
+[node name="Live3" type="Sprite2D" parent="."]
+z_index = 1
+position = Vector2(549, -16)
+scale = Vector2(2, 2)
+texture = ExtResource("4_l7vef")
