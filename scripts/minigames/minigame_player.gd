@@ -3,10 +3,15 @@ extends Node2D
 var _minigames = ["feed_cats", "clean_litter", "pet_cat", "play_with"]
 var _current_game
 var _games_played
+var _timer
 
 func _ready() -> void:
 	_games_played = -1
+	_timer = $CanvasLayer/Timer
 	_switch_game()
+
+func _process(delta: float) -> void:
+	_timer.value = _current_game.timer.time_left
 
 func _switch_game():
 	_games_played += 1
@@ -23,6 +28,7 @@ func _switch_game():
 	game_scene.game_won.connect(_on_minigame_win)
 	game_scene.game_lost.connect(_on_minigame_loss)
 	_current_game = game_scene
+	_timer.max_value = _current_game.duration
 	
 func _on_minigame_win():
 	_current_game.queue_free()

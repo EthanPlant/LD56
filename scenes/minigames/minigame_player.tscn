@@ -1,6 +1,17 @@
-[gd_scene load_steps=2 format=3 uid="uid://c4vlqko4xlhbv"]
+[gd_scene load_steps=3 format=3 uid="uid://c4vlqko4xlhbv"]
 
 [ext_resource type="Script" path="res://scripts/minigames/minigame_player.gd" id="1_mppno"]
+[ext_resource type="PackedScene" uid="uid://c8s880iehetw7" path="res://scenes/minigames/timer.tscn" id="2_7gd0i"]
 
 [node name="MinigamePlayer" type="Node2D"]
 script = ExtResource("1_mppno")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Timer" parent="CanvasLayer" instance=ExtResource("2_7gd0i")]
+z_index = 1
+offset_left = 2.0
+offset_top = -54.0
+offset_right = 128.0
+offset_bottom = -2.0
+scale = Vector2(0.510638, 0.555556)
