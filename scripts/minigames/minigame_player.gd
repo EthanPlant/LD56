@@ -4,11 +4,13 @@ var _minigames = ["feed_cats", "clean_litter", "pet_cat", "play_with"]
 var _current_game
 var _games_played
 var _lives
+var _score
 
 func _ready() -> void:
 	$PromptTimer.timeout.connect(_on_prompt_timer)
 	$Timer.explosion_finished.connect(_on_explosion_finished)
 	_lives = 3
+	_score = 0
 	_games_played = -1
 	_switch_game()
 
@@ -44,6 +46,8 @@ func _on_prompt_timer():
 func _on_minigame_win():
 	_current_game.queue_free()
 	_switch_game()
+	_score += 1
+	$Score.text = "Score %d"%_score
 
 func _on_minigame_loss():
 	_lives -= 1

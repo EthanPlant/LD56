@@ -59,7 +59,7 @@ _data = {
 
 [node name="Timer" type="Sprite2D"]
 position = Vector2(251, 287)
-scale = Vector2(2, 2)
+scale = Vector2(2, 2.01252)
 texture = ExtResource("1_ywi8f")
 hframes = 4
 vframes = 4

@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://c4vlqko4xlhbv"]
+[gd_scene load_steps=8 format=3 uid="uid://c4vlqko4xlhbv"]
 
 [ext_resource type="Script" path="res://scripts/minigames/minigame_player.gd" id="1_mppno"]
 [ext_resource type="PackedScene" uid="uid://c8s880iehetw7" path="res://scenes/minigames/timer.tscn" id="2_7gd0i"]
@@ -12,6 +12,12 @@ outline_size = 12
 outline_color = Color(0, 0, 0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_dxsmc"]
+font = ExtResource("3_yfo7b")
+font_size = 32
+outline_size = 12
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_j4bwa"]
 font = ExtResource("3_yfo7b")
 font_size = 32
 outline_size = 12
@@ -44,10 +50,10 @@ horizontal_alignment = 1
 
 [node name="Hint" type="Label" parent="."]
 z_index = 1
-offset_left = 476.0
-offset_top = 50.0
-offset_right = 639.0
-offset_bottom = 112.0
+offset_left = 469.0
+offset_top = 86.0
+offset_right = 632.0
+offset_bottom = 148.0
 text = "Hint
 "
 label_settings = SubResource("LabelSettings_dxsmc")
@@ -69,3 +75,12 @@ z_index = 1
 position = Vector2(549, -16)
 scale = Vector2(2, 2)
 texture = ExtResource("4_l7vef")
+
+[node name="Score" type="Label" parent="."]
+z_index = 1
+offset_left = 467.0
+offset_top = 56.0
+offset_right = 527.0
+offset_bottom = 80.0
+text = "Score: 0"
+label_settings = SubResource("LabelSettings_j4bwa")

@@ -10,7 +10,8 @@ func start_timer(duration):
     frame = 0
 
 func _process(_delta: float) -> void:
-    if value < 0:
+    if value <= 0:
+        $AnimationPlayer.speed_scale = 1
         $AnimationPlayer.play("explosion")
 
 
