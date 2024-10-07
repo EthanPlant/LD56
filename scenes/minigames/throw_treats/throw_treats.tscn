@@ -1,9 +1,12 @@
-[gd_scene load_steps=8 format=3 uid="uid://cf0jsdho61t84"]
+[gd_scene load_steps=18 format=3 uid="uid://cf0jsdho61t84"]
 
 [ext_resource type="Script" path="res://scenes/minigames/throw_treats/throw_treats.gd" id="1_b7on1"]
 [ext_resource type="Shader" path="res://assets/shaders/background.gdshader" id="1_y0fud"]
 [ext_resource type="Texture2D" uid="uid://bmos3rgsfwyxp" path="res://assets/textures/background.png" id="2_etfcp"]
 [ext_resource type="PackedScene" uid="uid://qm3ck4sjd7p" path="res://scenes/minigames/throw_treats/bar.tscn" id="3_v6m3v"]
+[ext_resource type="Texture2D" uid="uid://cbbde2hh5seab" path="res://assets/textures/throw_treat/Treat_bag.png" id="5_5dtcn"]
+[ext_resource type="Texture2D" uid="uid://jpr2kc4mp6o1" path="res://assets/textures/throw_treat/cat.png" id="6_ovksp"]
+[ext_resource type="Texture2D" uid="uid://eyyqhs5w3ig" path="res://assets/textures/throw_treat/treat.png" id="7_p3rwj"]
 
 [sub_resource type="Gradient" id="Gradient_o68ab"]
 colors = PackedColorArray(0, 0.151667, 0.65, 1, 0, 0.175, 0.75, 1)
@@ -18,6 +21,106 @@ shader_parameter/motion = Vector2(-25, -25)
 shader_parameter/scale = 3.0
 shader_parameter/offset = Vector2(0, 0)
 shader_parameter/gradient = SubResource("GradientTexture1D_ovojd")
+
+[sub_resource type="Animation" id="Animation_7s0r2"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TreatBag:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(132, 231)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Treat:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(121, 223)]
+}
+
+[sub_resource type="Animation" id="Animation_fuv2x"]
+resource_name = "new_animation"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Treat:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.0666667, 0.666667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(122, 222), Vector2(506, 254)]
+}
+
+[sub_resource type="Animation" id="Animation_715j1"]
+resource_name = "shake_bag"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TreatBag:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.166667, 0.333333),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(132, 231), Vector2(145, 231), Vector2(132, 231)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_hybpe"]
+_data = {
+"RESET": SubResource("Animation_7s0r2"),
+"new_animation": SubResource("Animation_fuv2x"),
+"shake_bag": SubResource("Animation_715j1")
+}
+
+[sub_resource type="Animation" id="Animation_wy63o"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(128, 224)]
+}
+
+[sub_resource type="Animation" id="Animation_aim61"]
+resource_name = "move_treat"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.0333333, 0.666667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(122, 222), Vector2(536, 252)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_4hwno"]
+_data = {
+"RESET": SubResource("Animation_wy63o"),
+"move_treat": SubResource("Animation_aim61")
+}
 
 [node name="ThrowTreats" type="Node2D"]
 script = ExtResource("1_b7on1")
@@ -35,3 +138,34 @@ stretch_mode = 1
 
 [node name="Bar" parent="." instance=ExtResource("3_v6m3v")]
 position = Vector2(314, 58)
+
+[node name="TreatBag" type="Sprite2D" parent="."]
+z_index = 1
+position = Vector2(132, 231)
+rotation = 1.5708
+scale = Vector2(4, 4)
+texture = ExtResource("5_5dtcn")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="TreatBag"]
+root_node = NodePath("../..")
+libraries = {
+"": SubResource("AnimationLibrary_hybpe")
+}
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(529, 249)
+scale = Vector2(4, 4)
+texture = ExtResource("6_ovksp")
+
+[node name="Treat" type="Sprite2D" parent="."]
+position = Vector2(128, 224)
+scale = Vector2(2, 2)
+texture = ExtResource("7_p3rwj")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Treat"]
+libraries = {
+"": SubResource("AnimationLibrary_4hwno")
+}
+
+[connection signal="bar_hit" from="Bar" to="." method="_on_bar_bar_hit"]
+[connection signal="animation_finished" from="Treat/AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

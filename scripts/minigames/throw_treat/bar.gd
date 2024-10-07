@@ -1,5 +1,7 @@
 extends Sprite2D
 
+signal bar_hit
+
 var _swing_speed = 75 * Global.speed_mult
 var _swing_dir = 1
 
@@ -17,7 +19,7 @@ func _process(delta):
     
     if Input.is_action_just_pressed("ui_accept"):
         if $Swing/Area2D.overlaps_area($SafeArea/Area2D):
-            get_parent().score += 1
+            bar_hit.emit()
         else:
             get_parent().state = Minigame.State.LOSS
 

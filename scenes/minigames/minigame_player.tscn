@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://c4vlqko4xlhbv"]
+[gd_scene load_steps=17 format=3 uid="uid://c4vlqko4xlhbv"]
 
 [ext_resource type="Script" path="res://scripts/minigames/minigame_player.gd" id="1_mppno"]
 [ext_resource type="PackedScene" uid="uid://c8s880iehetw7" path="res://scenes/minigames/timer.tscn" id="2_7gd0i"]
@@ -6,6 +6,9 @@
 [ext_resource type="Shader" path="res://assets/shaders/background.gdshader" id="4_6a2pa"]
 [ext_resource type="Texture2D" uid="uid://bmos3rgsfwyxp" path="res://assets/textures/background.png" id="5_sq1t7"]
 [ext_resource type="PackedScene" uid="uid://cn2fkmqf4qm2s" path="res://scenes/minigames/lives.tscn" id="6_85uxw"]
+[ext_resource type="AudioStream" uid="uid://k67wddwqs5e5" path="res://assets/win.wav" id="7_bn1ym"]
+[ext_resource type="AudioStream" uid="uid://cuxs60n66q2xl" path="res://assets/minigame.wav" id="7_vx1av"]
+[ext_resource type="AudioStream" uid="uid://cgyl8upwwfcv6" path="res://assets/loss.wav" id="9_du6me"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_qg2tb"]
 font = ExtResource("3_yfo7b")
@@ -73,10 +76,10 @@ metadata/_edit_use_anchors_ = true
 [node name="Hint" type="Label" parent="."]
 visible = false
 z_index = 1
-offset_left = 469.0
-offset_top = 86.0
-offset_right = 632.0
-offset_bottom = 148.0
+offset_left = 473.0
+offset_top = 3.0
+offset_right = 636.0
+offset_bottom = 65.0
 text = "Hint
 "
 label_settings = SubResource("LabelSettings_dxsmc")
@@ -90,6 +93,7 @@ offset_right = 170.0
 offset_bottom = 327.0
 
 [node name="TransitionBG" type="TextureRect" parent="."]
+visible = false
 texture_repeat = 2
 material = SubResource("ShaderMaterial_hs0o6")
 offset_right = 676.0
@@ -131,5 +135,16 @@ label_settings = SubResource("LabelSettings_f5pcw")
 wait_time = 0.5
 one_shot = true
 
+[node name="WinSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_bn1ym")
+
+[node name="MinigameMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_vx1av")
+
+[node name="LossSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("9_du6me")
+
 [connection signal="timeout" from="TransitionTimer" to="." method="_on_transition_timer_timeout"]
 [connection signal="timeout" from="SpeedUpTimer" to="." method="_on_speed_up_timer_timeout"]
+[connection signal="finished" from="WinSound" to="." method="_on_sound_finished"]
+[connection signal="finished" from="LossSound" to="." method="_on_sound_finished"]

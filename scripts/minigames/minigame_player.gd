@@ -66,33 +66,26 @@ func _load_game(game):
 	_current_game.game_start.connect(_on_minigame_start)
 	_current_game.game_won.connect(_on_minigame_win)
 	_current_game.game_lost.connect(_on_minigame_loss)
+	$MinigameMusic.pitch_scale = Global.speed_mult
+	$MinigameMusic.play()
 	add_child(scene)
 
 func _on_minigame_start():
 	$Prompt.visible = false
 
 func _on_minigame_win():
-	$Score.text = "%d"%(Global.score + 2)
-	$Hint.visible = false
+	$Score.text = "%d"%(Global.score + 1)
+	$Hint.visible = false				
 	$Timer.visible = false
-	$Score.visible = true
-	$Lives.visible = true
-	_state = State.TRANSITION
-	_current_game.queue_free()
-	$TransitionTimer.start()
+	$MinigameMusic.stop()
+	$WinSound.play()
 
 func _on_minigame_loss():
 	_lives -= 1
 	$Hint.visible = false
 	$Timer.visible = false
-	$Score.visible = true
-	$Lives.visible = true
-	if _lives <= 0:
-		get_tree().change_scene_to_file("res://scenes/game_over.tscn")
-	else:
-		$TransitionTimer.start()
-		_state = State.TRANSITION
-		_current_game.queue_free()
+	$LossSound.play()
+	$MinigameMusic.stop()
 
 func _on_transition_timer_timeout() -> void:
 	$Score.visible = false
@@ -112,3 +105,13 @@ func _on_speed_up_timer_timeout():
 	$SpeedUp.visible = false
 	_switch_game()
 	_state = State.PLAYING
+
+func _on_sound_finished():
+	$Score.visible = true
+	$Lives.visible = true
+	if _lives <= 0:
+		get_tree().change_scene_to_file("res://scenes/game_over.tscn")
+	else:
+		$TransitionTimer.start()
+		_state = State.TRANSITION
+		_current_game.queue_free()
