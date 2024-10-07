@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://c4vlqko4xlhbv"]
+[gd_scene load_steps=14 format=3 uid="uid://c4vlqko4xlhbv"]
 
 [ext_resource type="Script" path="res://scripts/minigames/minigame_player.gd" id="1_mppno"]
 [ext_resource type="PackedScene" uid="uid://c8s880iehetw7" path="res://scenes/minigames/timer.tscn" id="2_7gd0i"]
@@ -37,6 +37,13 @@ shader_parameter/gradient = SubResource("GradientTexture1D_rrh7j")
 [sub_resource type="LabelSettings" id="LabelSettings_j4bwa"]
 font = ExtResource("3_yfo7b")
 font_size = 72
+outline_size = 12
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_f5pcw"]
+font = ExtResource("3_yfo7b")
+font_size = 64
+font_color = Color(0, 1, 0.45, 1)
 outline_size = 12
 outline_color = Color(0, 0, 0, 1)
 
@@ -111,4 +118,18 @@ scale = Vector2(3, 3)
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
+[node name="SpeedUp" type="Label" parent="."]
+visible = false
+offset_left = 206.0
+offset_top = 133.0
+offset_right = 426.0
+offset_bottom = 181.0
+text = "Speed it up!"
+label_settings = SubResource("LabelSettings_f5pcw")
+
+[node name="SpeedUpTimer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
 [connection signal="timeout" from="TransitionTimer" to="." method="_on_transition_timer_timeout"]
+[connection signal="timeout" from="SpeedUpTimer" to="." method="_on_speed_up_timer_timeout"]

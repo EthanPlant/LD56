@@ -14,7 +14,7 @@ var _state
 
 func _ready() -> void:
 	_lives = 5
-	_games_played = -1
+	_games_played = 0
 	_prev_game = ""
 	_state = State.TRANSITION
 	$TransitionTimer.wait_time = 1.5
@@ -26,8 +26,6 @@ func _process(_delta: float) -> void:
 	print(_state)
 	if _state == State.TRANSITION:
 		$TransitionBG.visible = true
-		$Lives.visible = true
-		$Score.visible = true
 		$Lives.update_lives(_lives)
 	elif _state == State.PLAYING:
 		if _current_game.state == Minigame.State.PLAYING:
@@ -35,9 +33,6 @@ func _process(_delta: float) -> void:
 
 func _switch_game():
 	_games_played += 1
-	if _games_played > 0 and _games_played % 5 == 0:
-		Global.speed_mult += Global.SPEED_ITER
-		Global.speed_mult = min(Global.speed_mult, Global.SPEED_MAX)
 	
 	var game = _pick_game()
 	_prev_game = game
@@ -53,9 +48,6 @@ func _switch_game():
 
 	$Prompt.visible = true
 	$Hint.visible = true
-
-	$Score.visible = false
-	$Lives.visible = false
 
 	
 func _pick_game():
@@ -81,9 +73,11 @@ func _on_minigame_start():
 	$Prompt.visible = false
 
 func _on_minigame_win():
-	$Score.text = "%d"%(_games_played + 2)
+	$Score.text = "%d"%(_games_played + 1)
 	$Hint.visible = false
 	$Timer.visible = false
+	$Score.visible = true
+	$Lives.visible = true
 	_state = State.TRANSITION
 	_current_game.queue_free()
 	$TransitionTimer.start()
@@ -92,6 +86,8 @@ func _on_minigame_loss():
 	_lives -= 1
 	$Hint.visible = false
 	$Timer.visible = false
+	$Score.visible = true
+	$Lives.visible = true
 	if _lives <= 0:
 		get_tree().quit()
 	else:
@@ -101,6 +97,19 @@ func _on_minigame_loss():
 
 func _on_transition_timer_timeout() -> void:
 	$Score.visible = false
-	$Hint.visible = false
+	$Lives.visible = false
+	if _games_played != 0 and _games_played % 5 == 0 and Global.speed_mult != Global.SPEED_MAX:
+		$Score.visible = false
+		$Lives.visible = false
+		Global.speed_mult += Global.SPEED_ITER
+		Global.speed_mult = min(Global.speed_mult, Global.SPEED_MAX)
+		$SpeedUpTimer.start()
+		$SpeedUp.visible = true
+	else:
+		_switch_game()
+		_state = State.PLAYING
+
+func _on_speed_up_timer_timeout():
+	$SpeedUp.visible = false
 	_switch_game()
 	_state = State.PLAYING
