@@ -22,6 +22,7 @@ shader_parameter/gradient = SubResource("GradientTexture1D_63ek0")
 
 [node name="PetCat" type="Node2D"]
 script = ExtResource("1_owcr8")
+threshold = 20.0
 prompt = "Pet kitty!"
 hint = "Spam A and D"
 

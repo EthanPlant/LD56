@@ -27,12 +27,14 @@ outline_color = Color(0, 0, 0, 1)
 script = ExtResource("1_mppno")
 
 [node name="Timer" parent="." instance=ExtResource("2_7gd0i")]
+visible = false
 z_index = 1
 position = Vector2(256, 286)
 
 [node name="PromptTimer" type="Timer" parent="."]
 
 [node name="Prompt" type="Label" parent="."]
+visible = false
 z_index = 1
 anchors_preset = 10
 anchor_right = 1.0
@@ -47,8 +49,10 @@ text = "Prompt
 "
 label_settings = SubResource("LabelSettings_qg2tb")
 horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
 
 [node name="Hint" type="Label" parent="."]
+visible = false
 z_index = 1
 offset_left = 469.0
 offset_top = 86.0
@@ -57,20 +61,21 @@ offset_bottom = 148.0
 text = "Hint
 "
 label_settings = SubResource("LabelSettings_dxsmc")
+metadata/_edit_use_anchors_ = true
 
-[node name="Live1" type="Sprite2D" parent="."]
+[node name="Life1" type="Sprite2D" parent="."]
 z_index = 1
 position = Vector2(476, -16)
 scale = Vector2(2, 2)
 texture = ExtResource("4_l7vef")
 
-[node name="Live2" type="Sprite2D" parent="."]
+[node name="Life2" type="Sprite2D" parent="."]
 z_index = 1
 position = Vector2(513, -16)
 scale = Vector2(2, 2)
 texture = ExtResource("4_l7vef")
 
-[node name="Live3" type="Sprite2D" parent="."]
+[node name="Life3" type="Sprite2D" parent="."]
 z_index = 1
 position = Vector2(549, -16)
 scale = Vector2(2, 2)
@@ -84,3 +89,4 @@ offset_right = 527.0
 offset_bottom = 80.0
 text = "Score: 0"
 label_settings = SubResource("LabelSettings_j4bwa")
+metadata/_edit_use_anchors_ = true

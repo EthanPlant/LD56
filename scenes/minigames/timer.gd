@@ -9,10 +9,9 @@ func start_timer(duration):
     $AnimationPlayer.play("countdown")
     frame = 0
 
-func _process(_delta: float) -> void:
-    if value <= 0:
-        $AnimationPlayer.speed_scale = 1
-        $AnimationPlayer.play("explosion")
+func explosion():
+    $AnimationPlayer.speed_scale = 1
+    $AnimationPlayer.play("explosion")
 
 
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:

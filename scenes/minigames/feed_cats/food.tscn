@@ -11,6 +11,7 @@ height = 50.0
 script = ExtResource("1_mjqmd")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(1.00303, 1.00531)
 texture = ExtResource("2_tme20")
 
 [node name="Area2D" type="Area2D" parent="."]
