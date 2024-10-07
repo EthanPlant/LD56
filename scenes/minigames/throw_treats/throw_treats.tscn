@@ -1,0 +1,37 @@
+[gd_scene load_steps=8 format=3 uid="uid://cf0jsdho61t84"]
+
+[ext_resource type="Script" path="res://scenes/minigames/throw_treats/throw_treats.gd" id="1_b7on1"]
+[ext_resource type="Shader" path="res://assets/shaders/background.gdshader" id="1_y0fud"]
+[ext_resource type="Texture2D" uid="uid://bmos3rgsfwyxp" path="res://assets/textures/background.png" id="2_etfcp"]
+[ext_resource type="PackedScene" uid="uid://qm3ck4sjd7p" path="res://scenes/minigames/throw_treats/bar.tscn" id="3_v6m3v"]
+
+[sub_resource type="Gradient" id="Gradient_o68ab"]
+colors = PackedColorArray(0, 0.151667, 0.65, 1, 0, 0.175, 0.75, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_ovojd"]
+gradient = SubResource("Gradient_o68ab")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_kol77"]
+shader = ExtResource("1_y0fud")
+shader_parameter/mix_amount = 1.0
+shader_parameter/motion = Vector2(-25, -25)
+shader_parameter/scale = 3.0
+shader_parameter/offset = Vector2(0, 0)
+shader_parameter/gradient = SubResource("GradientTexture1D_ovojd")
+
+[node name="ThrowTreats" type="Node2D"]
+script = ExtResource("1_b7on1")
+threshold = 3.0
+prompt = "Throw Treats!"
+hint = "Hit Space"
+
+[node name="TextureRect" type="TextureRect" parent="."]
+texture_repeat = 2
+material = SubResource("ShaderMaterial_kol77")
+offset_right = 640.0
+offset_bottom = 384.0
+texture = ExtResource("2_etfcp")
+stretch_mode = 1
+
+[node name="Bar" parent="." instance=ExtResource("3_v6m3v")]
+position = Vector2(314, 58)

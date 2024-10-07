@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://d0g4c6f4qjnb8"]
+
+[ext_resource type="Texture2D" uid="uid://1regltpmelir" path="res://assets/textures/adopt/cats.png" id="1_lotbf"]
+[ext_resource type="Script" path="res://scripts/minigames/adopt/cat.gd" id="2_4x2mm"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_c1qql"]
+radius = 12.3378
+
+[node name="Cat" type="Sprite2D"]
+scale = Vector2(3, 3)
+texture = ExtResource("1_lotbf")
+hframes = 2
+vframes = 2
+script = ExtResource("2_4x2mm")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_c1qql")
+
+[connection signal="input_event" from="Area2D" to="." method="_on_area_2d_input_event"]

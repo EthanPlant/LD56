@@ -1,0 +1,76 @@
+[gd_scene load_steps=12 format=3 uid="uid://cwews0g343n2k"]
+
+[ext_resource type="Shader" path="res://assets/shaders/background.gdshader" id="1_oxjqy"]
+[ext_resource type="Script" path="res://scenes/minigames/adopt/adopt.gd" id="1_t3cb7"]
+[ext_resource type="Texture2D" uid="uid://bmos3rgsfwyxp" path="res://assets/textures/background.png" id="2_e15na"]
+[ext_resource type="Texture2D" uid="uid://bgnet6yq7nbq" path="res://assets/textures/adopt/Person.png" id="3_fxbir"]
+[ext_resource type="Texture2D" uid="uid://cvgeskp8xw3cb" path="res://assets/textures/adopt/bubble.png" id="4_4b42x"]
+[ext_resource type="Texture2D" uid="uid://h5ofaro8fc6c" path="res://assets/textures/adopt/cat_heads.png" id="5_yaj8p"]
+[ext_resource type="PackedScene" uid="uid://d0g4c6f4qjnb8" path="res://scenes/minigames/adopt/cat.tscn" id="6_c88pw"]
+
+[sub_resource type="Gradient" id="Gradient_i35y4"]
+offsets = PackedFloat32Array(0.00819672, 1)
+colors = PackedColorArray(0.631192, 0.547358, 1, 1, 0.550833, 0.45, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_orejc"]
+gradient = SubResource("Gradient_i35y4")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6gei7"]
+shader = ExtResource("1_oxjqy")
+shader_parameter/mix_amount = 1.0
+shader_parameter/motion = Vector2(-25, -25)
+shader_parameter/scale = 3.0
+shader_parameter/offset = Vector2(0, 0)
+shader_parameter/gradient = SubResource("GradientTexture1D_orejc")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_llxka"]
+size = Vector2(92.3333, 57)
+
+[node name="Adopt" type="Node2D"]
+script = ExtResource("1_t3cb7")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+material = SubResource("ShaderMaterial_6gei7")
+offset_right = 690.0
+offset_bottom = 380.0
+texture = ExtResource("2_e15na")
+stretch_mode = 1
+
+[node name="Person" type="Sprite2D" parent="."]
+position = Vector2(320, 59)
+scale = Vector2(3, 3)
+texture = ExtResource("3_fxbir")
+
+[node name="Bubble" type="Sprite2D" parent="Person"]
+position = Vector2(39, -11.5)
+texture = ExtResource("4_4b42x")
+
+[node name="DesiredCat" type="Sprite2D" parent="Person/Bubble"]
+position = Vector2(-15.3333, -11.5)
+texture = ExtResource("5_yaj8p")
+hframes = 2
+vframes = 2
+
+[node name="DropArea" type="Area2D" parent="Person"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Person/DropArea"]
+position = Vector2(6.99999, 13)
+shape = SubResource("RectangleShape2D_llxka")
+
+[node name="Orange" parent="." instance=ExtResource("6_c88pw")]
+position = Vector2(178, 245)
+cat_id = 0
+
+[node name="Grey" parent="." instance=ExtResource("6_c88pw")]
+position = Vector2(324, 245)
+frame = 1
+cat_id = 1
+
+[node name="Black" parent="." instance=ExtResource("6_c88pw")]
+position = Vector2(470, 245)
+frame = 2
+cat_id = 2
+
+[connection signal="dropped" from="Orange" to="." method="_on_dropped"]
+[connection signal="dropped" from="Grey" to="." method="_on_dropped"]
+[connection signal="dropped" from="Black" to="." method="_on_dropped"]

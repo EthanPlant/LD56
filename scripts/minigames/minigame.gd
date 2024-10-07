@@ -51,17 +51,18 @@ func game_state(_delta):
 func win_state():
 	if not _has_won:
 		game_won.emit()
+		timer.stop()
 		_has_won = true
 		timer.paused = true
 
 func loss_state():
 	if not _has_lost:
+		print("hi")
 		game_lost.emit()
 		_has_lost = true
 
 func check_score():
 	if score >= threshold:
-		timer.stop()
 		state = State.WIN
 
 func _on_timer_timeout():

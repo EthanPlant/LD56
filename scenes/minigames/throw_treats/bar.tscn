@@ -1,0 +1,35 @@
+[gd_scene load_steps=7 format=3 uid="uid://qm3ck4sjd7p"]
+
+[ext_resource type="Texture2D" uid="uid://brqroxelv3d0v" path="res://assets/textures/throw_treat/bar.png" id="1_l544q"]
+[ext_resource type="Script" path="res://scripts/minigames/throw_treat/bar.gd" id="2_hsi06"]
+[ext_resource type="Texture2D" uid="uid://dq0eet5bgv6ac" path="res://assets/textures/throw_treat/safe.png" id="3_fx7l8"]
+[ext_resource type="Texture2D" uid="uid://dqadl84pcg8kv" path="res://assets/textures/throw_treat/swing.png" id="4_yygwf"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ryugx"]
+size = Vector2(8, 10)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6lt6q"]
+size = Vector2(8, 16)
+
+[node name="Bar" type="Sprite2D"]
+scale = Vector2(4, 4)
+texture = ExtResource("1_l544q")
+script = ExtResource("2_hsi06")
+
+[node name="SafeArea" type="Sprite2D" parent="."]
+position = Vector2(21, 0)
+texture = ExtResource("3_fx7l8")
+
+[node name="Area2D" type="Area2D" parent="SafeArea"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SafeArea/Area2D"]
+shape = SubResource("RectangleShape2D_ryugx")
+
+[node name="Swing" type="Sprite2D" parent="."]
+position = Vector2(-1, 0)
+texture = ExtResource("4_yygwf")
+
+[node name="Area2D" type="Area2D" parent="Swing"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Swing/Area2D"]
+shape = SubResource("RectangleShape2D_6lt6q")

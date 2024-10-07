@@ -1,74 +1,114 @@
-[gd_scene load_steps=7 format=3 uid="uid://c8s880iehetw7"]
+[gd_scene load_steps=16 format=3 uid="uid://c8s880iehetw7"]
 
 [ext_resource type="Texture2D" uid="uid://chbnue7afodl1" path="res://assets/textures/timer.png" id="1_ywi8f"]
-[ext_resource type="Script" path="res://scenes/minigames/timer.gd" id="2_kt6o3"]
 
-[sub_resource type="Animation" id="Animation_hmxaw"]
-resource_name = "countdown"
-step = 0.1428
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1429, 0.285714, 0.428571, 0.571429, 0.714286, 0.857143, 1.2),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [0, 1, 2, 3, 4, 5, 6, 6]
-}
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cua0x"]
+bg_color = Color(0.194021, 0.657801, 1, 1)
 
-[sub_resource type="Animation" id="Animation_008mf"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [0]
-}
+[sub_resource type="AtlasTexture" id="AtlasTexture_ucw1n"]
+atlas = ExtResource("1_ywi8f")
+region = Rect2(0, 0, 64, 64)
 
-[sub_resource type="Animation" id="Animation_7psd4"]
-resource_name = "explosion"
-step = 0.0666667
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.0666667, 0.133333, 0.2, 0.266667, 0.333333, 0.4),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [6, 7, 8, 9, 10, 11, 12]
-}
+[sub_resource type="AtlasTexture" id="AtlasTexture_rmvcc"]
+atlas = ExtResource("1_ywi8f")
+region = Rect2(64, 0, 64, 64)
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_me4y8"]
-_data = {
-"RESET": SubResource("Animation_008mf"),
-"countdown": SubResource("Animation_hmxaw"),
-"explosion": SubResource("Animation_7psd4")
-}
+[sub_resource type="AtlasTexture" id="AtlasTexture_hjnsd"]
+atlas = ExtResource("1_ywi8f")
+region = Rect2(128, 0, 64, 64)
 
-[node name="Timer" type="Sprite2D"]
-position = Vector2(251, 287)
+[sub_resource type="AtlasTexture" id="AtlasTexture_bgkqv"]
+atlas = ExtResource("1_ywi8f")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q7n12"]
+atlas = ExtResource("1_ywi8f")
+region = Rect2(0, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sxnot"]
+atlas = ExtResource("1_ywi8f")
+region = Rect2(64, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eml20"]
+atlas = ExtResource("1_ywi8f")
+region = Rect2(128, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0rolk"]
+atlas = ExtResource("1_ywi8f")
+region = Rect2(192, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c0kd1"]
+atlas = ExtResource("1_ywi8f")
+region = Rect2(0, 128, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gg5px"]
+atlas = ExtResource("1_ywi8f")
+region = Rect2(64, 128, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_elmb8"]
+atlas = ExtResource("1_ywi8f")
+region = Rect2(128, 128, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gwegf"]
+atlas = ExtResource("1_ywi8f")
+region = Rect2(192, 128, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_y13qo"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ucw1n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rmvcc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hjnsd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bgkqv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q7n12")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sxnot")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eml20")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0rolk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c0kd1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gg5px")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_elmb8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gwegf")
+}],
+"loop": true,
+"name": &"default",
+"speed": 24.0
+}]
+
+[node name="Timer" type="ProgressBar"]
+z_index = 1
+offset_top = 20.0
+offset_right = 134.0
+offset_bottom = 34.0
 scale = Vector2(2, 2.01252)
-texture = ExtResource("1_ywi8f")
-hframes = 4
-vframes = 4
-script = ExtResource("2_kt6o3")
+theme_override_styles/fill = SubResource("StyleBoxFlat_cua0x")
+value = 100.0
+show_percentage = false
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_me4y8")
-}
-speed_scale = 0.2
-
-[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(-1.5, -8.94401)
+sprite_frames = SubResource("SpriteFrames_y13qo")
+autoplay = "default"
+frame_progress = 0.164536
