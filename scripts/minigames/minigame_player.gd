@@ -1,22 +1,37 @@
 extends Node2D
 
+enum State {
+	TRANSITION,
+	PLAYING
+}
+
 var _minigames = ["feed_cats", "play_with", "clean_litter", "pet_cat", "throw_treats", "adopt"]
 var _current_game
 var _prev_game
 var _games_played
 var _lives
-var _score
+var _state
 
 func _ready() -> void:
-	_lives = 3
-	_score = 0
+	_lives = 5
 	_games_played = -1
 	_prev_game = ""
-	_switch_game()
+	_state = State.TRANSITION
+	$TransitionTimer.wait_time = 1.5
+	$TransitionTimer.one_shot = true
+	$TransitionTimer.start()
+	$Score.text = "1"
 
 func _process(_delta: float) -> void:
-	if _current_game.state == Minigame.State.PLAYING:
-		$Timer.value = _current_game.timer.time_left
+	print(_state)
+	if _state == State.TRANSITION:
+		$TransitionBG.visible = true
+		$Lives.visible = true
+		$Score.visible = true
+		$Lives.update_lives(_lives)
+	elif _state == State.PLAYING:
+		if _current_game.state == Minigame.State.PLAYING:
+			$Timer.value = _current_game.timer.time_left
 
 func _switch_game():
 	_games_played += 1
@@ -38,6 +53,9 @@ func _switch_game():
 
 	$Prompt.visible = true
 	$Hint.visible = true
+
+	$Score.visible = false
+	$Lives.visible = false
 
 	
 func _pick_game():
@@ -63,11 +81,12 @@ func _on_minigame_start():
 	$Prompt.visible = false
 
 func _on_minigame_win():
-	_score += 1
-	$Score.text = "Score: %d"%_score
+	$Score.text = "%d"%(_games_played + 2)
 	$Hint.visible = false
 	$Timer.visible = false
-	_switch_game()
+	_state = State.TRANSITION
+	_current_game.queue_free()
+	$TransitionTimer.start()
 
 func _on_minigame_loss():
 	_lives -= 1
@@ -76,6 +95,12 @@ func _on_minigame_loss():
 	if _lives <= 0:
 		get_tree().quit()
 	else:
-		get_node("Life%d"%(_lives + 1)).visible = false
+		$TransitionTimer.start()
+		_state = State.TRANSITION
 		_current_game.queue_free()
-		_switch_game()
+
+func _on_transition_timer_timeout() -> void:
+	$Score.visible = false
+	$Hint.visible = false
+	_switch_game()
+	_state = State.PLAYING

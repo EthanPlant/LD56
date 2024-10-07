@@ -1,9 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://c4vlqko4xlhbv"]
+[gd_scene load_steps=13 format=3 uid="uid://c4vlqko4xlhbv"]
 
 [ext_resource type="Script" path="res://scripts/minigames/minigame_player.gd" id="1_mppno"]
 [ext_resource type="PackedScene" uid="uid://c8s880iehetw7" path="res://scenes/minigames/timer.tscn" id="2_7gd0i"]
 [ext_resource type="FontFile" uid="uid://cn7vlycdkx66t" path="res://assets/Kenney Pixel.ttf" id="3_yfo7b"]
-[ext_resource type="Texture2D" uid="uid://ed651jkntp1t" path="res://assets/textures/live.png" id="4_l7vef"]
+[ext_resource type="Shader" path="res://assets/shaders/background.gdshader" id="4_6a2pa"]
+[ext_resource type="Texture2D" uid="uid://bmos3rgsfwyxp" path="res://assets/textures/background.png" id="5_sq1t7"]
+[ext_resource type="PackedScene" uid="uid://cn2fkmqf4qm2s" path="res://scenes/minigames/lives.tscn" id="6_85uxw"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_qg2tb"]
 font = ExtResource("3_yfo7b")
@@ -17,16 +19,31 @@ font_size = 32
 outline_size = 12
 outline_color = Color(0, 0, 0, 1)
 
+[sub_resource type="Gradient" id="Gradient_binvi"]
+offsets = PackedFloat32Array(0.344262, 0.52459, 1)
+colors = PackedColorArray(0.25, 0.25, 0.25, 1, 0.502459, 0.502459, 0.502459, 1, 0.03, 0.03, 0.03, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_rrh7j"]
+gradient = SubResource("Gradient_binvi")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hs0o6"]
+shader = ExtResource("4_6a2pa")
+shader_parameter/mix_amount = 1.0
+shader_parameter/motion = Vector2(-25, -25)
+shader_parameter/scale = 3.0
+shader_parameter/offset = Vector2(0, 0)
+shader_parameter/gradient = SubResource("GradientTexture1D_rrh7j")
+
 [sub_resource type="LabelSettings" id="LabelSettings_j4bwa"]
 font = ExtResource("3_yfo7b")
-font_size = 32
+font_size = 72
 outline_size = 12
 outline_color = Color(0, 0, 0, 1)
 
 [node name="MinigamePlayer" type="Node2D"]
 script = ExtResource("1_mppno")
 
-[node name="PromptTimer" type="Timer" parent="."]
+[node name="TransitionTimer" type="Timer" parent="."]
 
 [node name="Prompt" type="Label" parent="."]
 visible = false
@@ -58,36 +75,40 @@ text = "Hint
 label_settings = SubResource("LabelSettings_dxsmc")
 metadata/_edit_use_anchors_ = true
 
-[node name="Life1" type="Sprite2D" parent="."]
-z_index = 1
-position = Vector2(476, -16)
-scale = Vector2(2, 2)
-texture = ExtResource("4_l7vef")
-
-[node name="Life2" type="Sprite2D" parent="."]
-z_index = 1
-position = Vector2(513, -16)
-scale = Vector2(2, 2)
-texture = ExtResource("4_l7vef")
-
-[node name="Life3" type="Sprite2D" parent="."]
-z_index = 1
-position = Vector2(549, -16)
-scale = Vector2(2, 2)
-texture = ExtResource("4_l7vef")
-
-[node name="Score" type="Label" parent="."]
-z_index = 1
-offset_left = 467.0
-offset_top = 56.0
-offset_right = 527.0
-offset_bottom = 80.0
-text = "Score: 0"
-label_settings = SubResource("LabelSettings_j4bwa")
-metadata/_edit_use_anchors_ = true
-
 [node name="Timer" parent="." instance=ExtResource("2_7gd0i")]
+visible = false
 offset_left = 36.0
 offset_top = 313.0
 offset_right = 170.0
 offset_bottom = 327.0
+
+[node name="TransitionBG" type="TextureRect" parent="."]
+texture_repeat = 2
+material = SubResource("ShaderMaterial_hs0o6")
+offset_right = 676.0
+offset_bottom = 382.0
+texture = ExtResource("5_sq1t7")
+stretch_mode = 1
+
+[node name="Score" type="Label" parent="."]
+z_index = 1
+offset_left = 275.0
+offset_top = 129.0
+offset_right = 355.0
+offset_bottom = 183.0
+text = "0"
+label_settings = SubResource("LabelSettings_j4bwa")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Lives" parent="." instance=ExtResource("6_85uxw")]
+z_index = 1
+offset_left = 167.0
+offset_top = 190.0
+offset_right = 267.0
+offset_bottom = 206.0
+scale = Vector2(3, 3)
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[connection signal="timeout" from="TransitionTimer" to="." method="_on_transition_timer_timeout"]

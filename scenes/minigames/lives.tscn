@@ -1,0 +1,35 @@
+[gd_scene load_steps=3 format=3 uid="uid://cn2fkmqf4qm2s"]
+
+[ext_resource type="Script" path="res://scripts/minigames/lives.gd" id="1_41dqr"]
+[ext_resource type="Texture2D" uid="uid://ed651jkntp1t" path="res://assets/textures/live.png" id="2_nun5n"]
+
+[node name="Lives" type="HBoxContainer"]
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_constants/separation = 5
+script = ExtResource("1_41dqr")
+
+[node name="1" type="TextureRect" parent="."]
+layout_mode = 2
+texture = ExtResource("2_nun5n")
+stretch_mode = 2
+
+[node name="2" type="TextureRect" parent="."]
+layout_mode = 2
+texture = ExtResource("2_nun5n")
+stretch_mode = 2
+
+[node name="3" type="TextureRect" parent="."]
+layout_mode = 2
+texture = ExtResource("2_nun5n")
+stretch_mode = 2
+
+[node name="4" type="TextureRect" parent="."]
+layout_mode = 2
+texture = ExtResource("2_nun5n")
+stretch_mode = 2
+
+[node name="5" type="TextureRect" parent="."]
+layout_mode = 2
+texture = ExtResource("2_nun5n")
+stretch_mode = 2
