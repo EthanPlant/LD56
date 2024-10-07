@@ -1,7 +1,16 @@
 [gd_scene load_steps=2 format=3 uid="uid://bgdy030l3aceg"]
 
-[ext_resource type="PackedScene" uid="uid://c4vlqko4xlhbv" path="res://scenes/minigames/minigame_player.tscn" id="1_h8q5x"]
+[ext_resource type="PackedScene" uid="uid://c7miifgx6v7pk" path="res://scenes/title_screen.tscn" id="1_cy0ho"]
 
 [node name="Main" type="Node2D"]
 
-[node name="MinigamePlayer" parent="." instance=ExtResource("1_h8q5x")]
+[node name="TitleScreen" parent="." instance=ExtResource("1_cy0ho")]
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_right = 640.0
+offset_bottom = 360.0
+grow_horizontal = 1
+grow_vertical = 1
+size_flags_horizontal = 6
+size_flags_vertical = 10

@@ -23,7 +23,6 @@ func _ready() -> void:
 	$Score.text = "1"
 
 func _process(_delta: float) -> void:
-	print(_state)
 	if _state == State.TRANSITION:
 		$TransitionBG.visible = true
 		$Lives.update_lives(_lives)

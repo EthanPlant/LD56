@@ -57,7 +57,6 @@ func win_state():
 
 func loss_state():
 	if not _has_lost:
-		print("hi")
 		game_lost.emit()
 		_has_lost = true
 
