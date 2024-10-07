@@ -8,13 +8,12 @@ enum State {
 var _minigames = ["feed_cats", "play_with", "clean_litter", "pet_cat", "throw_treats", "adopt"]
 var _current_game
 var _prev_game
-var _games_played
 var _lives
 var _state
 
 func _ready() -> void:
 	_lives = 5
-	_games_played = 0
+	Global.score = 0
 	_prev_game = ""
 	_state = State.TRANSITION
 	$TransitionTimer.wait_time = 1.5
@@ -26,12 +25,13 @@ func _process(_delta: float) -> void:
 	if _state == State.TRANSITION:
 		$TransitionBG.visible = true
 		$Lives.update_lives(_lives)
+		$Score.text = "%d"%(Global.score + 1)
 	elif _state == State.PLAYING:
 		if _current_game.state == Minigame.State.PLAYING:
 			$Timer.value = _current_game.timer.time_left
 
 func _switch_game():
-	_games_played += 1
+	Global.score += 1
 	
 	var game = _pick_game()
 	_prev_game = game
@@ -72,7 +72,7 @@ func _on_minigame_start():
 	$Prompt.visible = false
 
 func _on_minigame_win():
-	$Score.text = "%d"%(_games_played + 1)
+	$Score.text = "%d"%(Global.score + 2)
 	$Hint.visible = false
 	$Timer.visible = false
 	$Score.visible = true
@@ -88,7 +88,7 @@ func _on_minigame_loss():
 	$Score.visible = true
 	$Lives.visible = true
 	if _lives <= 0:
-		get_tree().quit()
+		get_tree().change_scene_to_file("res://scenes/game_over.tscn")
 	else:
 		$TransitionTimer.start()
 		_state = State.TRANSITION
@@ -97,7 +97,7 @@ func _on_minigame_loss():
 func _on_transition_timer_timeout() -> void:
 	$Score.visible = false
 	$Lives.visible = false
-	if _games_played != 0 and _games_played % 5 == 0 and Global.speed_mult != Global.SPEED_MAX:
+	if Global.score != 0 and Global.score % 5 == 0 and Global.speed_mult != Global.SPEED_MAX:
 		$Score.visible = false
 		$Lives.visible = false
 		Global.speed_mult += Global.SPEED_ITER

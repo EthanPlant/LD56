@@ -1,0 +1,75 @@
+[gd_scene load_steps=6 format=3 uid="uid://cme41pdjtqrpg"]
+
+[ext_resource type="Texture2D" uid="uid://bgllunacxtgsc" path="res://assets/textures/game_over.png" id="1_1dli2"]
+[ext_resource type="Script" path="res://scenes/game_over.gd" id="2_dg08m"]
+[ext_resource type="FontFile" uid="uid://cn7vlycdkx66t" path="res://assets/Kenney Pixel.ttf" id="3_y3ivr"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_dmni3"]
+font = ExtResource("3_y3ivr")
+font_size = 64
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xcwfx"]
+bg_color = Color(0, 0, 0, 1)
+shadow_size = 12
+
+[node name="TitleScreen" type="TextureRect"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = ExtResource("1_1dli2")
+script = ExtResource("2_dg08m")
+
+[node name="Score" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.375
+anchor_top = 0.331
+anchor_right = 0.375
+anchor_bottom = 0.331
+offset_left = -64.0
+offset_top = -24.16
+offset_right = 64.0
+offset_bottom = 23.84
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 1
+text = "Score:"
+label_settings = SubResource("LabelSettings_dmni3")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_right = 173.0
+grow_vertical = 2
+theme_override_constants/margin_left = 25
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_bottom = 25
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="Replay" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_y3ivr")
+theme_override_font_sizes/font_size = 64
+theme_override_styles/hover = SubResource("StyleBoxFlat_xcwfx")
+text = "Replay"
+flat = true
+
+[node name="Quit" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_y3ivr")
+theme_override_font_sizes/font_size = 64
+theme_override_styles/hover = SubResource("StyleBoxFlat_xcwfx")
+text = "Quit"
+flat = true
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Replay" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Quit" to="." method="_on_quit_pressed"]
